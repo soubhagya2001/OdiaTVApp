@@ -43,11 +43,11 @@ It features a clean, card-based home screen, smooth HLS video streaming, orienta
 
 ### 🏠 Home Screen
 Displays a clean grid layout of Odia TV channels.
-![Home Screen](assets/home-screen.png)
+![Home Screen](https://github.com/soubhagya2001/OdiaTVApp/raw/main/assets/home-screen.jpg)
 
 ### 🎬 Player Screen
 Gesture-based volume and brightness controls in action.
-![Player Screen](assets/player-screen.png)
+![Player Screen](https://github.com/soubhagya2001/OdiaTVApp/raw/main/assets/player-screen.jpg)
 
 ---
 
