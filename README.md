@@ -41,11 +41,18 @@ It features a clean, card-based home screen, smooth HLS video streaming, orienta
 
 ## 📸 App Screenshots
 
-### 🏠 Home Screen
-<img src="https://github.com/soubhagya2001/OdiaTVApp/raw/main/assets/home-screen.jpg" alt="Home Screen" width="200" height="300"/>
-
-### 🎬 Player Screen
-<img src="https://github.com/soubhagya2001/OdiaTVApp/raw/main/assets/player-screen.jpg" alt="Player Screen" width="200" height="300"/>
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/soubhagya2001/OdiaTVApp/raw/main/assets/home-screen.jpg" alt="Home Screen" width="200" height="300"/><br>
+      <strong>🏠 Home Screen</strong>
+    </td>
+    <td align="center">
+      <img src="https://github.com/soubhagya2001/OdiaTVApp/raw/main/assets/player-screen.jpg" alt="Player Screen" width="200" height="300"/><br>
+      <strong>🎬 Player Screen</strong>
+    </td>
+  </tr>
+</table>
 
 
 ---
