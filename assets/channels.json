@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "englishName": "Alankar",
+    "odiaName": "ଆଲଙ୍କାର",
+    "logoUrl": "https://yt3.googleusercontent.com/xb4-l-FsC9yJ-5KilvNtCs764T_Bnx196aeHlye2pWksqM2omtODxAQddYq90emPIYFLulNyUQ=s900-c-k-c0x00ffffff-no-rj",
+    "streamUrl": "https://livetv.tarangplus.in/alankar-origin/live/playlist.m3u8"
+  },
+  {
+    "id": 2,
+    "englishName": "Bada Khabar",
+    "odiaName": "ବଡ଼ ଖବର",
+    "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/a/a0/Bada_Khabar.jpg/revision/latest?cb=20200906021207",
+    "streamUrl": "https://badakhabar.livebox.co.in/Badakhabarhls/live.m3u8"
+  },
+  {
+    "id": 3,
+    "englishName": "DD Odia",
+    "odiaName": "ଡିଡି ଓଡ଼ିଆ",
+    "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/5/52/DD_Odia_Logo.jpg/revision/latest?cb=20240320092429",
+    "streamUrl": "https://d3eyhgoylams0m.cloudfront.net/v1/manifest/93ce20f0f52760bf38be911ff4c91ed02aa2fd92/ed7bd2c7-8d10-4051-b397-2f6b90f99acb/245d9a9e-4820-43b1-af33-4a3017d09f52/2.m3u8"
+  },
+  {
+    "id": 4,
+    "englishName": "Kalinga TV",
+    "odiaName": "କଳିଙ୍ଗ ଟିଭି",
+    "logoUrl": "https://yt3.googleusercontent.com/ytc/AIdro_lzW07TuOJU0Xm0UaRc6XCJt5Na5F8n3nAk_sksZvcXR8M=s900-c-k-c0x00ffffff-no-rj",
+    "streamUrl": "https://yuppftalive.akamaized.net/080823/kalingatv/playlist.m3u8"
+  },
+  {
+    "id": 5,
+    "englishName": "Kanak News",
+    "odiaName": "କନକ ନ୍ୟୁଜ୍",
+    "logoUrl": "https://yt3.googleusercontent.com/6EoB8KwfTAjvQ6H33qjsdr4-GPa0f3wVoqNp5z-Oi3O2tZ-tYLgXryWA-9h4Pd2igkcPM1VkkA=s900-c-k-c0x00ffffff-no-rj",
+    "streamUrl": "https://yuppftalive.akamaized.net/080823/kanaknews/playlist.m3u8"
+  },
+  {
+    "id": 6,
+    "englishName": "Nandighosha TV",
+    "odiaName": "ନନ୍ଦିଘୋଷ ଟିଭି",
+    "logoUrl": "https://yt3.googleusercontent.com/j-3-psEDcK0RWv7Hvgm-Nxdu9HabmmgKMDe78vXh88S917uB-BumZv-OCt_k4Xm743a_xX5k=s900-c-k-c0x00ffffff-no-rj",
+    "streamUrl": "https://www.nandighoshatvlive.com/hls/stream/index.m3u8"
+  },
+  {
+    "id": 7,
+    "englishName": "Naxatra News",
+    "odiaName": "ନକ୍ଷତ୍ର ନ୍ୟୁଜ୍",
+    "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/a/a9/Naxatra_News.jpg/revision/latest?cb=20191220181811",
+    "streamUrl": "https://wearelive.livebox.co.in/naxatratvhls/naxatratv.m3u8"
+  },
+  {
+    "id": 8,
+    "englishName": "OTV",
+    "odiaName": "ଓଟିଭି",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Odisha_TV_logo.svg/1200px-Odisha_TV_logo.svg.png",
+    "streamUrl": "https://livetv.tarangplus.in/otv-origin/live/playlist.m3u8"
+  },
+  {
+    "id": 9,
+    "englishName": "Prameya News",
+    "odiaName": "ପ୍ରମେୟ ନ୍ୟୁଜ୍",
+    "logoUrl": "https://content.jdmagicbox.com/comp/bhubaneshwar/z3/0674px674.x674.150817183135.k5z3/catalogue/prameya-news-7-khandagiri-bhubaneshwar-news-satellite-channels-15teyezgwo.jpg",
+    "streamUrl": "https://d35j504z0x2vu2.cloudfront.net/v1/master/0bc8e8376bd8417a1b6761138aa41c26c7309312/prameya-news7/index.m3u8?ads.dpname=distrotv"
+  },
+  {
+    "id": 10,
+    "englishName": "Prathana TV",
+    "odiaName": "ପ୍ରାର୍ଥନା ଟିଭି",
+    "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Prarthana_TV.png/revision/latest?cb=20240318110026",
+    "streamUrl": "https://livetv.tarangplus.in/prarthana-origin/live/playlist.m3u8"
+  },
+  {
+    "id": 11,
+    "englishName": "Tarang Music",
+    "odiaName": "ତରଙ୍ଗ ମ୍ୟୁଜିକ୍",
+    "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/3/3a/Tarang_Music_Logo.png/revision/latest?cb=20240318105630",
+    "streamUrl": "https://livetv.tarangplus.in/tarangmusic-origin/live/playlist.m3u8"
+  },
+  {
+    "id": 12,
+    "englishName": "Tarang TV",
+    "odiaName": "ତରଙ୍ଗ ଟିଭି",
+    "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/e/e5/Tarang_TV.png/revision/latest?cb=20240318105257",
+    "streamUrl": "https://livetv.tarangplus.in/tarangtv-origin/live/playlist.m3u8"
+  }
+]
