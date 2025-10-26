@@ -28,6 +28,7 @@ const PlayerScreen = ({ route, navigation }) => {
   const [isOnline, setIsOnline] = useState(true);
   const [channels, setChannels] = useState([]);
   const [loading, setLoading] = useState(true);
+  // REMOVED: const [useYoutube, setUseYoutube] = useState(false);
 
   const { width, height } = useWindowDimensions();
   const isLandscape = width > height;
@@ -51,7 +52,7 @@ const PlayerScreen = ({ route, navigation }) => {
     const fetchChannels = async () => {
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sec timeout
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
 
         const response = await fetch(CHANNELS_URL, {
           signal: controller.signal,
@@ -86,6 +87,9 @@ const PlayerScreen = ({ route, navigation }) => {
 
     fetchChannels();
   }, []);
+
+  // REMOVED: The useEffect hooks that managed and logged the useYoutube state.
+  // They are no longer needed here.
 
   if (!isOnline) {
     return (
@@ -125,20 +129,29 @@ const PlayerScreen = ({ route, navigation }) => {
       <StatusBar hidden={isLandscape} />
       {isLandscape ? (
         <VideoPlayer
-          streamUrl={currentChannel.streamUrl}
+          key={currentChannel?.id}
+          streamUrl={currentChannel?.streamUrl}
+          youtubeUrl={currentChannel?.youtubeUrl}
           style={styles.fullScreenVideo}
         />
       ) : (
         <View style={styles.portraitContainer}>
           <VideoPlayer
+            key={currentChannel?.id}
             streamUrl={currentChannel?.streamUrl}
             youtubeUrl={currentChannel?.youtubeUrl}
             style={styles.fullScreenVideo}
           />
-
           <ChannelList
             channels={channels}
-            onSelectChannel={setCurrentChannel}
+            onSelectChannel={(channel) => {
+              // console.log("Debug: Selected channel", {
+              //   channelId: channel?.id,
+              //   streamUrl: channel?.streamUrl,
+              //   youtubeUrl: channel?.youtubeUrl,
+              // });
+              setCurrentChannel(channel);
+            }}
           />
         </View>
       )}
@@ -155,9 +168,6 @@ const styles = StyleSheet.create({
   },
   portraitContainer: {
     flex: 1,
-  },
-  portraitVideo: {
-    height: "50%",
   },
   offlineAlert: {
     flex: 1,

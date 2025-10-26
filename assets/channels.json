@@ -1,5 +1,13 @@
 [
   {
+    "id": 8,
+    "englishName": "OTV",
+    "odiaName": "ଓଟିଭି",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Odisha_TV_logo.svg/1200px-Odisha_TV_logo.svg.png",
+    "streamUrl": "https://livetv.tarangplus.in/otv-origin/live/playlist.m3u8",
+    "isActive": 1
+  },
+  {
     "id": 1,
     "englishName": "Alankar",
     "odiaName": "ଆଲଙ୍କାର",
@@ -14,7 +22,7 @@
     "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/a/a0/Bada_Khabar.jpg/revision/latest?cb=20200906021207",
     "streamUrl": "https://badakhabar.livebox.co.in/Badakhabarhls/live.m3u8",
     "youtubeUrl": "https://www.youtube.com/embed/vLQ53lSMa-E",
-    "isActive": 1
+    "isActive": 0
   },
   {
     "id": 3,
@@ -58,16 +66,9 @@
     "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/a/a9/Naxatra_News.jpg/revision/latest?cb=20191220181811",
     "streamUrl": "https://wearelive.livebox.co.in/naxatratvhls/naxatratv.m3u8",
     "youtubeUrl": "https://www.youtube.com/embed/qRZ_xFqAU98",
-    "isActive": 1
+    "isActive": 0
   },
-  {
-    "id": 8,
-    "englishName": "OTV",
-    "odiaName": "ଓଟିଭି",
-    "logoUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Odisha_TV_logo.svg/1200px-Odisha_TV_logo.svg.png",
-    "streamUrl": "https://livetv.tarangplus.in/otv-origin/live/playlist.m3u8",
-    "isActive": 1
-  },
+
   {
     "id": 9,
     "englishName": "Prameya News",
@@ -83,7 +84,7 @@
     "odiaName": "ପ୍ରାର୍ଥନା ଟିଭି",
     "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/d/d2/Prarthana_TV.png/revision/latest?cb=20240318110026",
     "streamUrl": "https://livetv.tarangplus.in/prarthana-origin/live/playlist.m3u8",
-    "isActive":1
+    "isActive": 1
   },
   {
     "id": 11,
@@ -91,7 +92,7 @@
     "odiaName": "ତରଙ୍ଗ ମ୍ୟୁଜିକ୍",
     "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/3/3a/Tarang_Music_Logo.png/revision/latest?cb=20240318105630",
     "streamUrl": "https://livetv.tarangplus.in/tarangmusic-origin/live/playlist.m3u8",
-    "isActive":1
+    "isActive": 1
   },
   {
     "id": 12,
@@ -99,6 +100,6 @@
     "odiaName": "ତରଙ୍ଗ ଟିଭି",
     "logoUrl": "https://static.wikia.nocookie.net/logopedia/images/e/e5/Tarang_TV.png/revision/latest?cb=20240318105257",
     "streamUrl": "https://livetv.tarangplus.in/tarangtv-origin/live/playlist.m3u8",
-    "isActive":1
+    "isActive": 1
   }
 ]
