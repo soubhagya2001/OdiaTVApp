@@ -16,9 +16,8 @@ import {
   FONT_SIZES,
   OFFLINE_MESSAGE_EN,
   OFFLINE_MESSAGE_OD,
-  CHANNELS_URL
+  CHANNELS_URL,
 } from "../constants";
-
 
 const HomeScreen = ({ navigation }) => {
   const [isOnline, setIsOnline] = useState(true);
@@ -48,12 +47,12 @@ const HomeScreen = ({ navigation }) => {
         const data = await response.json();
 
         if (Array.isArray(data) && data.length > 0) {
-          const activeChannels = data.filter((ch) => ch.isActive == 1);
-          console.log("Using fetched channels", activeChannels);
+          let activeChannels = data.filter((ch) => ch.isActive == 1);
+          activeChannels = activeChannels.length > 0 ? activeChannels : data;
           setChannels(activeChannels);
         } else {
-          // fallback if data is not valid
-          const activeLocal = localChannels.filter((ch) => ch.isActive == 1);
+          let activeLocal = localChannels.filter((ch) => ch.isActive == 1);
+          activeLocal = activeLocal.length > 0 ? activeLocal : localChannels;
           console.log("Using saved channels");
           setChannels(activeLocal);
         }
@@ -62,7 +61,8 @@ const HomeScreen = ({ navigation }) => {
           "⚠️ Using local channels due to fetch issue:",
           error.message
         );
-        const activeLocal = localChannels.filter((ch) => ch.isActive == 1);
+        let activeLocal = localChannels.filter((ch) => ch.isActive == 1);
+        activeLocal = activeLocal.length > 0 ? activeLocal : localChannels;
         setChannels(activeLocal);
       } finally {
         setLoading(false);
@@ -92,26 +92,34 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.offlineText}>{OFFLINE_MESSAGE_OD}</Text>
         </View>
       )}
-      <FlatList
-        data={channels}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <ChannelCard
-            channel={item}
-            onPress={
-              isOnline
-                ? () => navigation.navigate("Player", { selectedChannel: item })
-                : null
-            }
-            disabled={!isOnline}
-          />
-        )}
-        numColumns={2}
-        contentContainerStyle={[
-          styles.listContent,
-          { paddingBottom: SPACING.large * 2 },
-        ]}
-      />
+
+      {channels.length === 0 ? (
+        <View style={styles.noChannelsContainer}>
+          <Text style={styles.noChannelsText}>No channels found</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={channels}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
+            <ChannelCard
+              channel={item}
+              onPress={
+                isOnline
+                  ? () =>
+                      navigation.navigate("Player", { selectedChannel: item })
+                  : null
+              }
+              disabled={!isOnline}
+            />
+          )}
+          numColumns={2}
+          contentContainerStyle={[
+            styles.listContent,
+            { paddingBottom: SPACING.large * 2 },
+          ]}
+        />
+      )}
     </SafeAreaView>
   );
 };
@@ -133,6 +141,16 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: FONT_SIZES.medium,
     textAlign: "center",
+  },
+  noChannelsContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noChannelsText: {
+    color: COLORS.textPrimary,
+    fontSize: FONT_SIZES.large,
+    fontWeight: "600",
   },
 });
 
