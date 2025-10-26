@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { StatusBar } from "expo-status-bar";
+import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 import NetInfo from "@react-native-community/netinfo";
 import VideoPlayer from "../components/VideoPlayer";
 import ChannelList from "../components/ChannelList";
@@ -37,9 +38,11 @@ const PlayerScreen = ({ route, navigation }) => {
     const unsubscribe = NetInfo.addEventListener((state) => {
       setIsOnline(state.isConnected);
     });
+    activateKeepAwake(); // Start keeping awake
     ScreenOrientation.unlockAsync();
     return () => {
       unsubscribe();
+      deactivateKeepAwake();
       ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
     };
   }, []);

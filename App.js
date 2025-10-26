@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as SplashScreen from "expo-splash-screen";
-import * as Brightness from "expo-brightness";
+import { activateKeepAwake, deactivateKeepAwake } from "expo-keep-awake";
 import AppNavigator from "./src/Navigation/AppNavigator";
 
 SplashScreen.preventAutoHideAsync();
@@ -11,16 +11,12 @@ const App = () => {
   useEffect(() => {
     const prepareApp = async () => {
       try {
-        console.log("Checking brightness permissions...");
-        const { status } = await Brightness.requestPermissionsAsync();
-        if (status === "granted") {
-          console.log("Brightness permission granted");
-        } else {
-          console.warn("Brightness permission denied");
-        }
+        // Activate keep awake for the entire app
+        activateKeepAwake();
+
         setAppIsReady(true);
         await SplashScreen.hideAsync();
-        console.log("Splash screen hidden");
+        console.log("Splash screen hidden and keep awake activated");
       } catch (error) {
         console.error("Error during app initialization:", error);
         setAppIsReady(true); // Proceed even if error occurs
@@ -39,7 +35,11 @@ const App = () => {
       }
     }, 5000);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      clearTimeout(timeout);
+      // Deactivate keep awake when app unmounts (optional)
+      deactivateKeepAwake();
+    };
   }, []);
 
   if (!appIsReady) {
