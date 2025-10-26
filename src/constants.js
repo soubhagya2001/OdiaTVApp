@@ -23,3 +23,6 @@ export const SPACING = {
 
 export const OFFLINE_MESSAGE_EN = "Internet is Off, Turn on the internet";
 export const OFFLINE_MESSAGE_OD = "ଇଣ୍ଟରନେଟ୍ ବନ୍ଦ ଅଛି, ଇଣ୍ଟରନେଟ୍ ଚାଲୁ କରନ୍ତୁ";
+
+export const CHANNELS_URL =
+  "https://raw.githubusercontent.com/soubhagya2001/OdiaTVApp/main/assets/channels.json";

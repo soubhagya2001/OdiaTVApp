@@ -5,25 +5,30 @@ import {
   SafeAreaView,
   StyleSheet,
   Text,
+  ActivityIndicator,
 } from "react-native";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { StatusBar } from "expo-status-bar";
 import NetInfo from "@react-native-community/netinfo";
 import VideoPlayer from "../components/VideoPlayer";
 import ChannelList from "../components/ChannelList";
-import channels from "../../assets/channels.json";
+import localChannels from "../../assets/channels.json";
 import {
   COLORS,
   SPACING,
   FONT_SIZES,
   OFFLINE_MESSAGE_EN,
   OFFLINE_MESSAGE_OD,
+  CHANNELS_URL
 } from "../constants";
 
 const PlayerScreen = ({ route, navigation }) => {
   const { selectedChannel } = route.params;
   const [currentChannel, setCurrentChannel] = useState(selectedChannel);
   const [isOnline, setIsOnline] = useState(true);
+  const [channels, setChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const { width, height } = useWindowDimensions();
   const isLandscape = width > height;
 
@@ -42,6 +47,43 @@ const PlayerScreen = ({ route, navigation }) => {
     navigation.setOptions({ headerShown: !isLandscape });
   }, [isLandscape, navigation]);
 
+  useEffect(() => {
+    const fetchChannels = async () => {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 sec timeout
+
+        const response = await fetch(CHANNELS_URL, {
+          signal: controller.signal,
+        });
+        clearTimeout(timeoutId);
+
+        if (!response.ok) throw new Error("Failed to fetch channels");
+
+        const data = await response.json();
+
+        if (Array.isArray(data) && data.length > 0) {
+          const activeChannels = data.filter((ch) => ch.isActive === 1);
+          setChannels(activeChannels);
+        } else {
+          const activeLocal = localChannels.filter((ch) => ch.isActive === 1);
+          setChannels(activeLocal);
+        }
+      } catch (error) {
+        console.warn(
+          "⚠️ Using local channels due to fetch issue:",
+          error.message
+        );
+        const activeLocal = localChannels.filter((ch) => ch.isActive === 1);
+        setChannels(activeLocal);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchChannels();
+  }, []);
+
   if (!isOnline) {
     return (
       <SafeAreaView style={styles.container}>
@@ -49,6 +91,18 @@ const PlayerScreen = ({ route, navigation }) => {
           <Text style={styles.offlineText}>{OFFLINE_MESSAGE_EN}</Text>
           <Text style={styles.offlineText}>{OFFLINE_MESSAGE_OD}</Text>
         </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator
+          size="large"
+          color={COLORS.primary}
+          style={{ marginTop: 50 }}
+        />
       </SafeAreaView>
     );
   }
