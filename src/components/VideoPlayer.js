@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { Video } from "expo-av";
 import { WebView } from "react-native-webview";
+import YoutubePlayer from "react-native-youtube-iframe";
 import { COLORS, SPACING, FONT_SIZES } from "../constants";
 
 const VideoPlayer = ({
@@ -143,75 +144,46 @@ const VideoPlayer = ({
   }
 
   // If YouTube mode
+  // If YouTube mode
   if (isUsingYoutube && youtubeUrl) {
     const videoId = getVideoId(youtubeUrl);
     if (!videoId) {
       return null; // Error handled in useEffect
     }
 
-    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&modestbranding=1&rel=0&playsinline=1`;
+    const screenWidth = width;
+    const playerHeight = (screenWidth * 9) / 16; // 16:9 aspect ratio
 
     return (
-      <View style={[styles.container, style]}>
-        <WebView
-          ref={webViewRef}
-          source={{ uri: embedUrl }}
-          style={{ width, height }}
-          containerStyle={{ width, height }}
-          javaScriptEnabled={true}
-          domStorageEnabled={true}
-          allowsInlineMediaPlayback={true}
-          allowsFullscreenVideo={true}
-          mediaPlaybackRequiresUserAction={false}
-          androidLayerType="hardware"
-          userAgent="Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36"
-          injectedJavaScript={`
-            window.addEventListener('error', (e) => {
-              window.ReactNativeWebView.postMessage('JS Error: ' + e.message);
-            });
-            window.addEventListener('unhandledrejection', (e) => {
-              window.ReactNativeWebView.postMessage('Promise Rejection: ' + e.reason);
-            });
-            true;
-          `}
-          onMessage={(event) => {
-            console.error("Debug: WebView JS error:", event.nativeEvent.data);
-            setDebugInfo((prev) => ({
-              ...prev,
-              lastError: `WebView JS error: ${event.nativeEvent.data}`,
-            }));
-            setError(true);
+      <View
+        style={[
+          styles.container,
+          { width: screenWidth, height: playerHeight },
+          style,
+        ]}
+      >
+        <YoutubePlayer
+          height={playerHeight}
+          width={screenWidth}
+          play={true}
+          videoId={debugInfo.videoId}
+          onReady={() => {
+            console.log("Debug: YoutubePlayer ready");
+            setLoading(false); // hide loader when player is ready
           }}
-          onLoadStart={() => {
-            console.log("Debug: WebView loading started");
-            setDebugInfo((prev) => ({ ...prev, webViewLoaded: false }));
-          }}
-          onLoad={() => {
-            console.log("Debug: WebView loaded");
-            setDebugInfo((prev) => ({ ...prev, webViewLoaded: true }));
-            setLoading(false);
+          onChangeState={(state) => {
+            if (state === "ended") setLoading(false);
           }}
           onError={(e) => {
-            console.error("Debug: WebView error:", e);
+            console.error("YoutubePlayer error:", e);
+            setError(true);
             setDebugInfo((prev) => ({
               ...prev,
-              lastError: `WebView error: ${JSON.stringify(e)}`,
+              lastError: `YoutubePlayer error: ${e}`,
             }));
-            setError(true);
-          }}
-          onHttpError={(e) => {
-            console.error("Debug: WebView HTTP error:", e);
-            setDebugInfo((prev) => ({
-              ...prev,
-              lastError: `WebView HTTP error: ${JSON.stringify(e)}`,
-            }));
-            setError(true);
-          }}
-          onNavigationStateChange={(navState) => {
-            console.log("Debug: WebView navigation state:", navState);
-            setDebugInfo((prev) => ({ ...prev, webViewState: navState }));
           }}
         />
+
         {loading && (
           <ActivityIndicator
             size="large"

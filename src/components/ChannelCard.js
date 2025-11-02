@@ -1,6 +1,12 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Image } from "expo-image"; // Use expo-image for caching
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Platform,
+} from "react-native";
+import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { COLORS, FONT_SIZES, SPACING } from "../constants";
 
@@ -14,7 +20,7 @@ const ChannelCard = ({ channel, onPress, disabled }) => {
         <Image
           source={{ uri: channel.logoUrl }}
           style={styles.logo}
-          cachePolicy="disk" // Persist to disk
+          cachePolicy="disk"
           contentFit="contain"
         />
         <Text style={styles.englishName}>{channel.englishName}</Text>
@@ -35,13 +41,18 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    // Remove aspectRatio: 1
+    minHeight: 160, // Ensures space for logo + 2 lines + padding
   },
   disabled: {
     opacity: 0.5,
   },
   gradient: {
+    flex: 1,
     alignItems: "center",
+    justifyContent: "center",
     padding: SPACING.medium,
+    minHeight: 160, // Match card
   },
   logo: {
     width: 100,
@@ -52,10 +63,13 @@ const styles = StyleSheet.create({
     fontSize: FONT_SIZES.medium,
     fontWeight: "bold",
     color: COLORS.textPrimary,
+    textAlign: "center",
+    marginTop: SPACING.xsmall,
   },
   odiaName: {
     fontSize: FONT_SIZES.small,
     color: COLORS.textSecondary,
+    textAlign: "center",
   },
 });
 
